@@ -1,0 +1,11 @@
+/target
+.env
+
+# Local .terraform directories
+**/*.terraform/*
+terraform/.terraform.lock.hcl
+.tfstate files
+*.tfstate
+*.tfstate.*
+../..
+k8s/aws-secrets_copy.yaml

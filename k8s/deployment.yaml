@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rust-service
+  namespace: rust-services
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rust-service
+  template:
+    metadata:
+      labels:
+        app: rust-service
+    spec:
+      serviceAccountName: s3-access-sa
+      containers:
+      - name: rust-service
+        image: <ECR_REPOSITORY_URL>:latest
+        ports:
+        - containerPort: 8080
+        env:
+        - name: AWS_REGION
+          value: "us-east-1"
+        - name: AWS_S3_BUCKET
+          value: "in-n-out-editme"
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
