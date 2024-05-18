@@ -10,12 +10,12 @@ You can use curl to test the service. Below are some examples:
 ## 1. Check the Health of the Service:
 
 ```sh
-curl http://127.0.0.1:8080/health
+curl http://0.0.0.0:8080/health
 
 ```
 ## 2. Send Data to be Recorded in S3:
 ```sh
-curl -X POST http://127.0.0.1:8080/record -H "Content-Type: application/json" -d '"Your data here"'
+curl -X POST http://0.0.0.0:8080/record -H "Content-Type: application/json" -d '"Your data here"'
 ```
 ## Prerequisites
 
