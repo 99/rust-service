@@ -9,3 +9,5 @@ terraform/.terraform.lock.hcl
 *.tfstate.*
 ../..
 k8s/aws-secrets_copy.yaml
+terraform/azure/.terraform
+terraform/azure/.terraform.lock.hcl
