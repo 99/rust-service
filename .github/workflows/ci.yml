@@ -18,8 +18,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 0  
-        token: ${{ secrets.TOKEN }} 
+        fetch-depth: 0
+        token: ${{ secrets.TOKEN }}
 
 
     - name: Build
@@ -34,8 +34,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  
-          token: ${{ secrets.TOKEN }}  
+          fetch-depth: 0
+          token: ${{ secrets.TOKEN }}
       - name: Install Rust Toolchain
         uses: dtolnay/rust-toolchain@stable
 
@@ -46,8 +46,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  
-          token: ${{ secrets.TOKEN }} 
+          fetch-depth: 0
+          token: ${{ secrets.TOKEN }}
       - name: Install Rust Toolchain
         uses: dtolnay/rust-toolchain@stable
       - name: Install cargo-audit
@@ -61,8 +61,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0  
-          token: ${{ secrets.TOKEN }} 
+          fetch-depth: 0
+          token: ${{ secrets.TOKEN }}
       - name: Install Rust Toolchain
         uses: dtolnay/rust-toolchain@stable
       - name: Install Clippy

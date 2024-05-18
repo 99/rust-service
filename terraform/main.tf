@@ -10,7 +10,6 @@ data "aws_eks_cluster" "cluster" {
   name = var.cluster_name
 }
 
-
 resource "aws_iam_policy" "s3_write_policy" {
   name        = "S3WritePolicy"
   description = "Policy to allow writing to the S3 bucket"
@@ -25,8 +24,8 @@ resource "aws_iam_policy" "s3_write_policy" {
           "s3:ListBucket"
         ]
         Resource = [
-          "arn:aws:s3:::${var.bucket_name}",
-          "arn:aws:s3:::${var.bucket_name}/*"
+          "arn:aws:s3:::${data.aws_s3_bucket.this.bucket}",
+          "arn:aws:s3:::${data.aws_s3_bucket.this.bucket}/*"
         ]
       }
     ]

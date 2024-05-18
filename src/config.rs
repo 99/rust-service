@@ -10,10 +10,10 @@ pub struct AppConfig {
 impl AppConfig {
     pub fn new() -> Result<Self, ConfigError> {
         let s = Config::builder()
-            .add_source(File::with_name("Config").required(false))  
+            .add_source(File::with_name("Config").required(false))
             .add_source(Environment::with_prefix("APP").separator("__"))
             .build()?;
-        
+
         s.try_deserialize()
     }
 }

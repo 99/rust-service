@@ -38,7 +38,7 @@ A Rust service deployed on Kubernetes with AWS S3 integration.
 
     The application will start and be accessible at `http://127.0.0.1:8080`.
 
-#### Docker 
+#### Docker
 
 1. **Build the Docker image**:
 
@@ -57,7 +57,7 @@ A Rust service deployed on Kubernetes with AWS S3 integration.
 ### Deploying to Kubernetes
 
 
-Ensure an EKS cluster created. 
+Ensure an EKS cluster created.
 
 
 #### Initialize and Apply Terraform
@@ -103,4 +103,3 @@ Ensure an EKS cluster created.
     kubectl apply -f k8s/deployment.yaml
     kubectl apply -f k8s/service.yaml
     ```
-

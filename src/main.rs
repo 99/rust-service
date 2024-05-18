@@ -1,14 +1,14 @@
-use actix_web::{web, App, HttpResponse, HttpServer, Responder};
-use rusoto_core::{Region, HttpClient};
-use rusoto_credential::EnvironmentProvider;
-use rusoto_s3::{S3Client, S3, PutObjectRequest};
-use std::sync::Arc;
 use crate::config::AppConfig;
-use log::{info, error};
-use env_logger::Env;
-use std::env;
+use actix_web::{web, App, HttpResponse, HttpServer, Responder};
 use dotenv::dotenv;
+use env_logger::Env;
+use log::{error, info};
+use rusoto_core::{HttpClient, Region};
+use rusoto_credential::EnvironmentProvider;
+use rusoto_s3::{PutObjectRequest, S3Client, S3};
+use std::env;
 use std::str::FromStr;
+use std::sync::Arc;
 
 mod config;
 
@@ -16,7 +16,11 @@ async fn health() -> impl Responder {
     HttpResponse::Ok().body("Healthy")
 }
 
-async fn record(data: web::Json<String>, s3_client: web::Data<Arc<S3Client>>, config: web::Data<AppConfig>) -> impl Responder {
+async fn record(
+    data: web::Json<String>,
+    s3_client: web::Data<Arc<S3Client>>,
+    config: web::Data<AppConfig>,
+) -> impl Responder {
     let put_request = PutObjectRequest {
         bucket: config.aws_s3_bucket.clone(),
         key: "example.txt".to_string(),
@@ -28,11 +32,11 @@ async fn record(data: web::Json<String>, s3_client: web::Data<Arc<S3Client>>, co
         Ok(_) => {
             info!("Data successfully written to S3");
             HttpResponse::Ok().body("Data written to S3")
-        },
+        }
         Err(e) => {
             error!("Error writing to S3: {}", e);
             HttpResponse::InternalServerError().body(format!("Failed: {}", e))
-        },
+        }
     }
 }
 

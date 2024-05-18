@@ -2,7 +2,6 @@ variable "bucket_name" {
   description = "The name of the S3 bucket"
   type        = string
   default     = "addbucket"
-
 }
 
 variable "role_name" {
@@ -14,5 +13,5 @@ variable "role_name" {
 variable "cluster_name" {
   description = "The name of the EKS cluster"
   type        = string
-  default     = "eks-meetup-demo"
+  default     = "addcluster"
 }
