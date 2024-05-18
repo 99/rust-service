@@ -8,6 +8,7 @@ use log::{info, error};
 use env_logger::Env;
 use std::env;
 use dotenv::dotenv;
+use std::str::FromStr;
 
 mod config;
 
