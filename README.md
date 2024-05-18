@@ -1,7 +1,22 @@
 # Rust Micro Service
 
-A Rust service deployed on Kubernetes with AWS S3 integration.
+A basic Rust service example deployed on AWS EKS with AWS S3 integration.
 
+### How the Service is Running
+
+
+You can use curl to test the service. Below are some examples:
+
+## 1. Check the Health of the Service:
+
+```sh
+curl http://127.0.0.1:8080/health
+
+```
+## 2. Send Data to be Recorded in S3:
+```sh
+curl -X POST http://127.0.0.1:8080/record -H "Content-Type: application/json" -d '"Your data here"'
+```
 ## Prerequisites
 
 - Docker
@@ -36,7 +51,7 @@ A Rust service deployed on Kubernetes with AWS S3 integration.
     cargo run
     ```
 
-    The application will start and be accessible at `http://127.0.0.1:8080`.
+    The application will start and be accessible at `http://0.0.0.0:8080`.
 
 #### Docker
 
@@ -60,7 +75,7 @@ A Rust service deployed on Kubernetes with AWS S3 integration.
 Ensure an EKS cluster created.
 
 
-#### Initialize and Apply Terraform
+#### Initialize service resourses with Teraraform
 
 1. **Navigate to the `terraform` directory**:
 
@@ -76,6 +91,13 @@ Ensure an EKS cluster created.
     ```
 
     Provide the existing S3 bucket name and EKS cluster name when prompted.
+3. **Destroy the Infrastructure**:
+Destroy created infrastructure. Cleaning up resources when they are no longer needed.
+
+```sh
+terraform destroy
+```
+
 
 #### Apply Kubernetes Manifests
 
@@ -85,7 +107,7 @@ Ensure an EKS cluster created.
     kubectl apply -f k8s/namespace.yaml
     ```
 
-2. **Create the AWS secrets**:
+2. **Create the AWS secrets (base64)**:
 
     ```sh
     kubectl apply -f k8s/aws-secrets.yaml
